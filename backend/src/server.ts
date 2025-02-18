@@ -6,7 +6,7 @@ import { fastifySwaggerUi } from '@fastify/swagger-ui'
 
 import { env } from './env'
 
-import { subscriptions } from './routes/subscriptions'
+import { subscriptions, accessInviteLink } from './routes'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -33,6 +33,7 @@ app.register(fastifySwaggerUi, {
 })
 
 app.register(subscriptions)
+app.register(accessInviteLink)
 
 app.listen({ port: env.PORT }).then(() => {
   console.log(`🚀 HTTP server running on PORT: ${env.PORT}`)
