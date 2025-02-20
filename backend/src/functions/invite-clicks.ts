@@ -6,6 +6,8 @@ type Params = {
   subscriberId: string
 }
 
-export const accessInviteLink = async ({ subscriberId }: Params) => {
-  await redis.hincrby('invites', subscriberId, 1)
+export const inviteClicks = async ({ subscriberId }: Params) => {
+  const count = await redis.hget('invites', subscriberId)
+
+  return { count: count ? Number(count) : 0 }
 }
