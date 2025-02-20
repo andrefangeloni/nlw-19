@@ -8,7 +8,7 @@ export const inviteClicksRoute: FastifyPluginAsyncZod = async (app) => {
     '/subscribers/:subscriberId/ranking/clicks',
     {
       schema: {
-        tags: ['referral'],
+        tags: ['Referral'],
         summary: 'Invite clicks',
         description: 'Get subscriber invite clicks count',
         params: z.object({
