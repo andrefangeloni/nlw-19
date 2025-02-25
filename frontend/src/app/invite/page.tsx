@@ -8,6 +8,8 @@ import logo from '../../assets/logo.svg'
 import { InputLink } from './input-link'
 
 const InvitePage = () => {
+  const inviteLink = 'http://localhost:3000/invite/ajkdhajkhdkab'
+
   return (
     <div className="min-h-dvh flex items-center justify-between gap-16 flex-col md:flex-row">
       <div className="flex flex-col gap-10 w-full max-w-[550px]">
@@ -27,7 +29,7 @@ const InvitePage = () => {
             </p>
           </div>
 
-          <InputLink />
+          <InputLink inviteLink={inviteLink} />
 
           <Stats />
         </div>
