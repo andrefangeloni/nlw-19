@@ -3,12 +3,20 @@ import Image from 'next/image'
 import { Stats } from './stats'
 import { Ranking } from './ranking'
 
-import logo from '../../assets/logo.svg'
+import logo from '../../../assets/logo.svg'
 
 import { InputLink } from './input-link'
 
-const InvitePage = () => {
-  const inviteLink = 'http://localhost:3000/invite/ajkdhajkhdkab'
+type Props = {
+  params: Promise<{
+    subscriberId: string
+  }>
+}
+
+const InvitePage = async ({ params }: Props) => {
+  const { subscriberId } = await params
+
+  const inviteLink = `http://localhost:3333/invites/${subscriberId}`
 
   return (
     <div className="min-h-dvh flex items-center justify-between gap-16 flex-col md:flex-row">
