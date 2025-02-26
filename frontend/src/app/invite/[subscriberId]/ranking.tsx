@@ -4,35 +4,36 @@ import gold from '../../../assets/medal-gold.svg'
 import silver from '../../../assets/medal-silver.svg'
 import cooper from '../../../assets/medal-cooper.svg'
 
-export const Ranking = () => (
-  <div className="w-full max-w-[440px] space-y-5">
-    <h2 className="font-heading font-semibold text-gray-200 text-xl leading-none">Ranking de indicações</h2>
+import { getRanking } from '@/http/api'
 
-    <div className="space-y-4">
-      <div className="relative rounded-xl bg-gray-700 border border-gray-600 p-6 flex flex-col justify-center gap-3">
-        <span className="text-sm text-gray-300 leading-none">
-          <span className="font-semibold">1º</span> | André Angeloni
-        </span>
-        <span className="font-heading text-2xl font-semibold text-gray-200 leading-none">1030</span>
+export const Ranking = async () => {
+  const { ranking } = await getRanking()
 
-        <Image src={gold} alt="" className="absolute top-0 right-8" />
-      </div>
-      <div className="relative rounded-xl bg-gray-700 border border-gray-600 p-6 flex flex-col justify-center gap-3">
-        <span className="text-sm text-gray-300 leading-none">
-          <span className="font-semibold">2º</span> | Andy Lonny
-        </span>
-        <span className="font-heading text-2xl font-semibold text-gray-200 leading-none">1000</span>
+  return (
+    <div className="w-full max-w-[440px] space-y-5">
+      <h2 className="font-heading font-semibold text-gray-200 text-xl leading-none">Ranking de indicações</h2>
 
-        <Image src={silver} alt="" className="absolute top-0 right-8" />
-      </div>
-      <div className="relative rounded-xl bg-gray-700 border border-gray-600 p-6 flex flex-col justify-center gap-3">
-        <span className="text-sm text-gray-300 leading-none">
-          <span className="font-semibold">3º</span> | Zé das Couve
-        </span>
-        <span className="font-heading text-2xl font-semibold text-gray-200 leading-none">800</span>
+      <div className="space-y-4">
+        {ranking.map((subscriber, index) => {
+          const rankingPosition = index + 1
 
-        <Image src={cooper} alt="" className="absolute top-0 right-8" />
+          return (
+            <div
+              key={subscriber.id}
+              className="relative rounded-xl bg-gray-700 border border-gray-600 p-6 flex flex-col justify-center gap-3"
+            >
+              <span className="text-sm text-gray-300 leading-none">
+                <span className="font-semibold">{rankingPosition}º</span> | {subscriber.name}
+              </span>
+              <span className="font-heading text-2xl font-semibold text-gray-200 leading-none">{subscriber.score}</span>
+
+              {rankingPosition === 1 && <Image src={gold} alt="" className="absolute top-0 right-8" />}
+              {rankingPosition === 2 && <Image src={silver} alt="" className="absolute top-0 right-8" />}
+              {rankingPosition === 3 && <Image src={cooper} alt="" className="absolute top-0 right-8" />}
+            </div>
+          )
+        })}
       </div>
     </div>
-  </div>
-)
+  )
+}

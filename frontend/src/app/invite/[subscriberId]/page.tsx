@@ -39,7 +39,7 @@ const InvitePage = async ({ params }: Props) => {
 
           <InputLink inviteLink={inviteLink} />
 
-          <Stats />
+          <Stats subscriberId={subscriberId} />
         </div>
       </div>
 
