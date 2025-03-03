@@ -13,6 +13,7 @@ import {
   inviteCountsRoute,
   rankingPositionRoute,
   rankingRoute,
+  sendMessageRoute,
 } from './routes'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
@@ -45,6 +46,7 @@ app.register(inviteClicksRoute)
 app.register(inviteCountsRoute)
 app.register(rankingPositionRoute)
 app.register(rankingRoute)
+app.register(sendMessageRoute)
 
 app.listen({ port: env.PORT }).then(() => {
   console.log(`🚀 HTTP server running on PORT: ${env.PORT}`)
